@@ -11,6 +11,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Arc;
+import javafx.scene.shape.ArcTo;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 
@@ -78,20 +80,98 @@ public class GameController {
 
 	private void drawHangman() {
 
-		Line line = new Line();
-		line.setStartX(25.0f);
-		line.setStartY(0.0f);
-		line.setEndX(25.0f);
-		line.setEndY(25.0f);
+        int SPINE_START_X = 100;
+        int SPINE_START_Y = 20;
+        int SPINE_END_X = SPINE_START_X;
+        int SPINE_END_Y = SPINE_START_Y + 50;
 
-		Line pole = new Line(-25.0f, -50.0f, -25.0f, 25.0f);
-		Line horizLine = new Line(-25.0f, 50.0f, 25.0f, 50.0f);
-		Circle c = new Circle();
-		c.setRadius(10);
+        Circle head = new Circle(20);
+        head.setTranslateX(10.0f);
+
+        Line spine = new Line();
+        spine.setStartX(SPINE_START_X);
+        spine.setStartY(SPINE_START_Y);
+        spine.setEndX(SPINE_END_X);
+        spine.setEndY(SPINE_END_Y);
+
+        Line leftArm = new Line();
+        leftArm.setStartX(SPINE_START_X);
+        leftArm.setStartY(SPINE_START_Y);
+        leftArm.setEndX(SPINE_START_X + 40);
+        leftArm.setEndY(SPINE_START_Y - 10);
+        leftArm.setTranslateX(-20);
+        leftArm.setTranslateY(-40);
+
+        Line rightArm = new Line();
+        rightArm.setStartX(SPINE_START_X);
+        rightArm.setStartY(SPINE_START_Y);
+        rightArm.setEndX(SPINE_START_X - 40);
+        rightArm.setEndY(SPINE_START_Y - 10);
+        rightArm.setTranslateX(20);
+        rightArm.setTranslateY(-52);
+
+        Line leftLeg = new Line();
+        leftLeg.setStartX(SPINE_END_X);
+        leftLeg.setStartY(SPINE_END_Y);
+        leftLeg.setEndX(SPINE_END_X + 25);
+        leftLeg.setEndY(SPINE_END_Y + 50);
+        leftLeg.setTranslateX(13);
+        leftLeg.setTranslateY(-25);
+
+        Line rightLeg = new Line();
+        rightLeg.setStartX(SPINE_END_X);
+        rightLeg.setStartY(SPINE_END_Y);
+        rightLeg.setEndX(SPINE_END_X - 25);
+        rightLeg.setEndY(SPINE_END_Y + 50);
+        rightLeg.setTranslateX(-13);
+        rightLeg.setTranslateY(-77);
+
+
+        Line pole = new Line(0.0f, -50.0f, 0.0f, 150.0f);
+        pole.setTranslateX(-75);
+        pole.setTranslateY(150);
+        pole.setStrokeWidth(5.0f);
+
+        Line topBar = new Line(-25.0f, -50.0f, 50.0f, -50.0f);
+        topBar.setTranslateX(-40);
+//        topBar.setTranslateY(-50);
+        topBar.setStrokeWidth(5.0f);
+
+        Line theRope = new Line(0.0f, 50.0f, 0.0f, 125.0f);
+        theRope.setTranslateX(0.0f);
+//        theRope.setTranslateY(-50);
+        theRope.setStrokeWidth(2.0f);
 
         board.getChildren().add(pole);
-        board.getChildren().add(horizLine);
-//		board.getChildren().add(line);
+        board.getChildren().add(topBar);
+        board.getChildren().add(theRope);
+
+        board.getChildren().add(head);
+        board.getChildren().add(spine);
+
+        board.getChildren().add(leftArm);
+        board.getChildren().add(rightArm);
+
+        board.getChildren().add(leftLeg);
+        board.getChildren().add(rightLeg);
+
+//        board.getChildren().addAll(head, spine, leftArm, rightArm, leftLeg, rightLeg);
+//		Line line = new Line();
+//		line.setStartX(25.0f);
+//		line.setStartY(0.0f);
+//		line.setEndX(25.0f);
+//		line.setEndY(25.0f);
+//
+//		Line pole = new Line(-25.0f, -50.0f, -25.0f, 25.0f);
+//		Line horizLine = new Line(-25.0f, 50.0f, 25.0f, 50.0f);
+//
+//		Circle c = new Circle();
+//		c.setRadius(10);
+//		c.setTranslateY(-25.0f);
+//
+//        board.getChildren().add(pole);
+//        board.getChildren().add(horizLine);
+////		board.getChildren().add(line);
 //		board.getChildren().add(c);
 
 	}
