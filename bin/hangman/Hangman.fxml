@@ -47,7 +47,13 @@
                 <styleClass>
                     <String fx:value="status"/>
                 </styleClass>
-            </Label>
+			</Label>
+			<Label fx:id="missedLettersLabel">
+				<styleClass>
+					<String fx:value="status"/>
+				</styleClass>
+			</Label>
+
 			<GridPane>
 				<Label fx:id="enterALetterLabel" GridPane.columnIndex="0">
 					<styleClass>
@@ -57,6 +63,7 @@
 				<TextField fx:id="textField" GridPane.columnIndex="1">
 				</TextField>
 			</GridPane>
+
 		</VBox>
 	</bottom>
 

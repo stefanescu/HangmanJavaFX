@@ -44,7 +44,9 @@ public class GameController {
     private Label triesLabel;
     @FXML
     private Label tmpAnswerLabel ;
-	@FXML
+    @FXML
+    private Label missedLettersLabel ;
+    @FXML
 	private Label enterALetterLabel ;
 	@FXML
 	private TextField textField ;
@@ -155,6 +157,7 @@ public class GameController {
 		statusLabel.textProperty().bind(Bindings.format("%s", game.gameStatusProperty()));
         triesLabel.textProperty().bind(Bindings.format("Attempt %s/6", game.movesProperty()));
         tmpAnswerLabel.textProperty().bind(Bindings.format("%s", game.tmpAnswerProperty()));
+        missedLettersLabel.textProperty().bind(Bindings.format("%s", game.missedLettersProperty()));
 //        tmpAnswerLabel.textProperty().bind(new StringBinding() {
 //                                               @Override
 //                                               protected String computeValue() {

@@ -25,7 +25,7 @@ public class Game {
 //	private final ReadOnlyStringWrapper tmpAnswer;
 	private StringProperty tmpAnswer;
 	private StringProperty triesLeft;
-	private String missedLetters;
+	private StringProperty missedLetters;
 	private String[] letterAndPosArray;
 	private String[] words;
 //	private int moves;
@@ -33,6 +33,10 @@ public class Game {
 	private int index;
 	private final ReadOnlyObjectWrapper<GameStatus> gameStatus;
 	private ObjectProperty<Boolean> gameState = new ReadOnlyObjectWrapper<Boolean>();
+
+    public StringProperty missedLettersProperty() {
+        return missedLetters;
+    }
 
 
     public enum GameStatus {
@@ -93,6 +97,7 @@ public class Game {
             }
         });
 
+		missedLetters = new SimpleStringProperty();
 		moves = new SimpleIntegerProperty();
 
 		init();
@@ -105,20 +110,18 @@ public class Game {
 //        moves.setValue(0);
 //        tmpAnswer.setValue("");
 //		gameState.setValue(false); // initial state
-//		createGameStatusBinding();
+		createGameStatusBinding();
 	}
 
     private void init() {
         setRandomWord();
         prepTmpAnswer();
         prepLetterAndPosArray();
-        missedLetters = ""; //TODO: move to init so we can reset
-//		moves = 0;
+        missedLetters.setValue(""); //TODO: move to init so we can reset
         moves.setValue(0);
 
-//        tmpAnswer.setValue("");
         gameState.setValue(false); // initial state
-        createGameStatusBinding();
+//        createGameStatusBinding();
 
     }
 
@@ -136,7 +139,7 @@ public class Game {
 					return check;
 				}
 
-				if(tmpAnswer.getValue().trim().length() == 0 && missedLetters.isEmpty()){
+				if(tmpAnswer.getValue().trim().length() == 0 && missedLetters.get().isEmpty()){
 					log("new game");
 					return GameStatus.OPEN;
 				}
@@ -239,7 +242,7 @@ public class Game {
 			}
 		}
 		if (index == -1)
-			missedLetters += input;
+			missedLetters.setValue(missedLetters.get() + input);
 		return index;
 	}
 
@@ -288,6 +291,7 @@ public class Game {
 		}
 		else if(moves.getValue() == numOfTries()) {
 			log("game over");
+			tmpAnswer.setValue(answer);
 			return GameStatus.GAME_OVER;
 		}
 		else {
