@@ -1,9 +1,9 @@
 
 
 
-# Hangman java game
+# Hangman Java template
 
-Dev on Windows 10
+
 
 IDE:InteliJ IDEA 2018.2.3
 
